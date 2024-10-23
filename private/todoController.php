@@ -1,13 +1,24 @@
 <?php
 
-require_once dirname(__FILE__). "/todoModel.php";
+namespace Private\TodoController;
+// require_once dirname(__FILE__). "/todoModel.php";
 
-class TodoController extends TodoModel{
+use Private\Models\User;
+
+class TodoController {
     
-    public function addTodo($todo){
+private $usermodel;
+        public function __construct(){
+            $this->usermodel = new User();
+        }
 
-        return $this->addToDoDB($todo);
-    }
+        // all users
+        public function index(){
+            $users = $this->usermodel->getAll();
+            // echo $users;
+            include_once '../view/index.php';
+        }
+
 }
 
 ?>
