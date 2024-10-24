@@ -1,4 +1,6 @@
 <?php
+namespace Config\Database;
+
  require_once dirname(__DIR__). '/../config/dbcon.php';
 
 ?>

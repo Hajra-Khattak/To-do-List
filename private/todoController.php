@@ -8,6 +8,7 @@ use Private\Models\User;
 class TodoController {
     
 private $usermodel;
+
         public function __construct(){
             $this->usermodel = new User();
         }
@@ -15,7 +16,7 @@ private $usermodel;
         // all users
         public function index(){
             $users = $this->usermodel->getAll();
-            // echo $users;
+            
             include_once '../view/index.php';
         }
 

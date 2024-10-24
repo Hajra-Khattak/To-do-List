@@ -1,7 +1,8 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', value: 1);
 
+?>
+
+<?php
 
 require_once dirname(__FILE__) . "/layout/header.php";
 
@@ -30,45 +31,44 @@ require_once dirname(__FILE__) . "/layout/nav.php";
 
   <h2> User List </h2>
   <div class="table-responsive">
+    <a href="" class="btn btn-primary">create</a>
+
     <table class="table table-primary">
       <thead>
-      <?php if (isset($users) && !empty($users)) { ?>
+
+     
     <div class="table-responsive">
-    <?php
-echo "<pre>";
-print_r($users);
-echo "</pre>";
-?>
         <table class="table table-primary">
-            <thead>
-                <?php foreach ($users as $user) { ?>
+            <thead>               
                     <tr>
-  
-
-                        <th scope="col"><?= htmlspecialchars($user['name']) ?></th>
-                        <th scope="col"><?= htmlspecialchars($user['email']) ?></th>
-                        <th scope="col"><a href="/user/show<?= htmlspecialchars($user['id']); ?>"> View </a></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"><a href="" class="btn btn-info"> Action </a></th>
                     </tr>
-                <?php } ?>
+               
             </thead>
-        </table>
-    </div>
-<?php } else { ?>
-    <p>No users found</p>
-<?php } ?>
+        
 
+<!-- ============================== -->
       </thead>
       <tbody>
+        <?php if(empty($users)): ?>
+
         <tr class="">
-          <td scope="row">R1C1</td>
-          <td>R1C2</td>
-          
+          <td scope="row">No Users Found</td>
         </tr>
+        <?php else: ?>
+          <?php foreach ($users as $user) :?>
         <tr class="">
-          <td scope="row">Item</td>
-          <td>Item</td>
-          
+          <td scope="row"> <?= htmlspecialchars($user['name']) ?>  </td>
+          <a scope="row"> <?= htmlspecialchars($user['email']) ?>  </td>
+          <td>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-primary">Delete</a>
+          </td>  
         </tr>
+        <?php endforeach; ?>
+        <?php endif; ?>
       </tbody>
     </table>
   </div>
