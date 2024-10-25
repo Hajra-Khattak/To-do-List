@@ -34,22 +34,32 @@ class User {
 
     }
 
-    public function getAll(){
+    // public function getAll(){
+    //     $sql = "SELECT * FROM " . $this->table;
+    //     $stmt = mysqli_stmt_init($this->conn);
+    //     if(mysqli_stmt_prepare($stmt,$sql)){
+    //         mysqli_stmt_execute($stmt);
+
+    //         $result = mysqli_stmt_get_result($stmt);
+    //         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
+    //         return $users;
+    //     }else{
+    //         error_log("prepare error:" . mysqli_stmt_error($stmt));
+    //         return [];
+    //     }
+            
+
+    // }
+
+
+    public function getAll() {
         $sql = "SELECT * FROM " . $this->table;
-        $stmt = mysqli_stmt_init($this->conn);
-        if(mysqli_stmt_prepare($stmt,$sql)){
-            mysqli_stmt_execute($stmt);
-
-            $result = mysqli_stmt_get_result($stmt);
-            $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            
-            return $users;
-        }else{
-            error_log("prepare error:" . mysqli_stmt_error($stmt));
-            return [];
-        }
-            
-
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        echo "get All ";
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 //     public function getAll() {
